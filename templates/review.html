@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Detected Text</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('{{ url_for("static", filename="images/background.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 150px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        li {
+            background-color: #ffffff;
+            border-radius: 5px;
+            margin: 5px 0;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <!-- Company Logo -->
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Company Logo" class="logo">
+    
+    <h1>Review Detected Text</h1>
+    <ul>
+        {% for text in detected_text %}
+            <li>{{ text }}</li>
+        {% endfor %}
+    </ul>
+    
+    <form action="/save-webcam-text" method="post">
+        <button type="submit" class="button">Save as Text File</button>
+    </form>
+
+    <br>
+    <a href="/" class="button">Go Back</a>
+</body>
+</html>
